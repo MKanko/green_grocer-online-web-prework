@@ -9,12 +9,20 @@ def consolidate_cart(cart)
     item_hash.each do |item_key, item_info|
       
       con_cart[item_key] = item_info
-       
-      item_info[:count] = 1 
-#binding.pry       
+      
       if con_cart[item_key]
+       
+        item_info[:count] = 1 
         
-        item_info[:count] += 1   
+      elsif con_cart[item_key] && item_info[:count] = 1 
+      
+        item_info[:count] += 1 
+      
+        
+#binding.pry       
+      
+        
+          
           
       end 
     end 
