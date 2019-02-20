@@ -1,8 +1,25 @@
+require 'pry'
+
 def consolidate_cart(cart)
   
   con_cart = {}
-  
-  cart.each do |hash_item|
+ 
+  cart.each do |item_hash|
+    
+    item_hash.each do |item_key, item_info|
+      
+      con_cart[item_key] = item_info
+       
+      item_info[:count] = 1 
+#binding.pry       
+      if con_cart[item_key]
+        
+        item_info[:count] += 1   
+          
+      end 
+    end 
+  end 
+end 
     
     
       
@@ -10,7 +27,7 @@ def consolidate_cart(cart)
     
     
     
-end
+
 
 def apply_coupons(cart, coupons)
   # code here
