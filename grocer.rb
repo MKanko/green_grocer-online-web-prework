@@ -3,27 +3,22 @@ require 'pry'
 def consolidate_cart(cart)
   
   con_cart = {}
- 
+  
   cart.each do |item_hash|
     
     item_hash.each do |item_key, item_info|
       
       con_cart[item_key] = item_info
       
-      if con_cart[item_key]
+      item_info[:count] = 1   
+      
+      if con_cart.has_key?(item_key)
+        
+        con_cart[item_key].merge! item_info[:count] += 1 
        
-        item_info[:count] = 1 
-        
-      elsif con_cart[item_key] && item_info[:count] = 1 
+         
+binding.pry        
       
-        item_info[:count] += 1 
-      
-        
-#binding.pry       
-      
-        
-          
-          
       end 
     end 
   end 
