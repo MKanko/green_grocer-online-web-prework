@@ -19,21 +19,27 @@ end
 def apply_coupons(cart, coupons)
   coupons.each do |coupon| 
     item = coupon[:item]
-    
-    if !cart["#{ item } W/COUPON"]
-      cart["#{ item } W/COUPON"] = { price: coupon[:cost], clearance: cart[item][:clearance], count: 1 }
+    if !cart["#{item} W/COUPON"]
+      cart["#{item} W/COUPON"] = {price: coupon[:cost], clearance: cart[item][:clearance], count: 1}
     else 
-      cart["#{ item } W/COUPON"][:count] += 1 
+      cart["#{item} W/COUPON"][:count] += 1 
     end
-    
     cart[item][:count] -= coupon[:num]
   end
-  
   cart
+#binding.pry 
 end
 
 def apply_clearance(cart)
-  # code here
+  
+  cart.each do |item_key, item_info|
+    
+    if item_key[:clearance] == true
+      
+binding.pry      
+  
+    end
+  end
 end
 
 def checkout(cart, coupons)
@@ -41,4 +47,4 @@ def checkout(cart, coupons)
 end
 
 
-# cart["#{item_name} W/COUPON"]
+
