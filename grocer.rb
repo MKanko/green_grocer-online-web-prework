@@ -17,17 +17,19 @@ end
     
     
 def apply_coupons(cart, coupons)
-  cart.each do |item_key, item_info|
-    coupons.each do |coupon|
-#binding.pry     
-      coupon[:item]
-     
-     if item_key == coupon[:item] 
-     
-     
-     end
+  coupons.each do |coupon| 
+    item = coupon[:item]
+    
+    if !cart["#{ item } W/COUPON"]
+      cart["#{ item } W/COUPON"] = { price: coupon[:cost], clearance: cart[item][:clearance], count: 1 }
+    else 
+      cart["#{ item } W/COUPON"][:count] += 1 
     end
-  end      
+    
+    cart[item][:count] -= coupon[:num]
+  end
+  
+  cart
 end
 
 def apply_clearance(cart)
