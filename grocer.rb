@@ -19,7 +19,8 @@ end
 def apply_coupons(cart, coupons)
   coupons.each do |coupon| 
     item = coupon[:item]
-    if cart[item]
+ # binding.pry  
+    if cart[item] && cart[item][:count] >= coupon[:num] 
       if !cart["#{item} W/COUPON"]
         cart["#{item} W/COUPON"] = {price: coupon[:cost], clearance: cart[item][:clearance], count: 1}
       else 
@@ -29,7 +30,6 @@ def apply_coupons(cart, coupons)
     end 
   end 
   cart
-#binding.pry 
 end
 
 def apply_clearance(cart)
@@ -48,10 +48,10 @@ def checkout(cart, coupons)
   con_cart = consolidate_cart(cart)
   coupon_cart = apply_coupons(con_cart, coupons)
   checkout_cart = apply_clearance(coupon_cart)
-    
+#binding.pry    
   checkout_cart.each do |item_key, item_info|
     sub_total += item_info[:price] * item_info[:count]
- binding.pry
+
       if sub_total < 100 
         total_cost = sub_total
       elsif sub_total > 100
