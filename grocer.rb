@@ -51,7 +51,6 @@ def checkout(cart, coupons)
 #binding.pry    
   checkout_cart.each do |item_key, item_info|
     sub_total += item_info[:price] * item_info[:count]
-
       if sub_total < 100 
         total_cost = sub_total
       elsif sub_total > 100
